@@ -1,5 +1,7 @@
 import pandas as pd
 from src.preprocessing import preprocess_text
+from src.features import get_bow_features,get_tfidf_features
+
 
 def load_data():
   df_fake=pd.read_csv("data/Fake.csv")
@@ -32,6 +34,14 @@ def main():
   df = preprocess_dataset(df)
   print("Sample preprocessed text:")
   print(df[['text', 'clean_text_final']].head())
+  
+  # Feature Engineering
+  X_tfidf,tfidf_vectorizer=get_tfidf_features(df['clean_text_final'])
+  print("TF-IDF Feature Matrix Shape: ",X_tfidf.shape)
+
+  X_bow,bow_vectorizer=get_tfidf_features(df["clean_text_final"])
+  print("Bag of words feature matrix shape: ",X_bow.shape)
+  
 
 
 if __name__=="__main__":
