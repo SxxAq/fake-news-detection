@@ -12,7 +12,7 @@ def train_model(X, y, test_size=0.2, random_state=42):
     models = {}
 
     # logistic regression
-    lr = LogisticRegression(max_iter=1000)
+    lr = LogisticRegression(max_iter=1000,solver='saga')
     lr.fit(X_train, y_train)
     models["LogisticRegression"] = lr
 
@@ -22,7 +22,7 @@ def train_model(X, y, test_size=0.2, random_state=42):
     models["NaiveBayes"] = nb
 
     # random forest
-    rf = RandomForestClassifier(n_estimators=100, random_state=random_state)
+    rf = RandomForestClassifier(n_estimators=50,n_jobs=-1, random_state=random_state)
     rf.fit(X_train, y_train)
     models["RandomForest"] = rf
 
